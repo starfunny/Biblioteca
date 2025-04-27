@@ -1,11 +1,9 @@
-
 DROP DATABASE IF EXISTS bibliotecass;
 
 CREATE DATABASE bibliotecass;
 
 USE bibliotecass;
 
--- Tabla autor
 DROP TABLE IF EXISTS autor;
 CREATE TABLE autor (
     codigo_autor INT AUTO_INCREMENT PRIMARY KEY,
@@ -13,14 +11,12 @@ CREATE TABLE autor (
     apellidos VARCHAR(100) NOT NULL
 );
 
--- Tabla editorial
 DROP TABLE IF EXISTS editorial;
 CREATE TABLE editorial (
     codigo_editorial INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL
 );
 
--- Tabla libro
 DROP TABLE IF EXISTS libro;
 CREATE TABLE libro (
     codigo_libro VARCHAR(20) PRIMARY KEY,
@@ -33,7 +29,6 @@ CREATE TABLE libro (
         ON DELETE CASCADE ON UPDATE CASCADE
 );
 
--- Tabla ejemplar
 CREATE TABLE ejemplar (
     id_ejemplar INT AUTO_INCREMENT PRIMARY KEY,
     localizacion VARCHAR(100) NOT NULL,
@@ -42,7 +37,6 @@ CREATE TABLE ejemplar (
         ON DELETE CASCADE ON UPDATE CASCADE
 );
 
--- Tabla usuario
 CREATE TABLE usuario (
     codigo_usuario INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
@@ -51,7 +45,6 @@ CREATE TABLE usuario (
     direccion VARCHAR(200) NOT NULL
 );
 
--- Tabla de relación autor-libro (many-to-many)
 DROP TABLE IF EXISTS autor_libro;
 CREATE TABLE autor_libro (
     codigo_autor INT,
@@ -61,7 +54,6 @@ CREATE TABLE autor_libro (
     FOREIGN KEY (codigo_libro) REFERENCES libro(codigo_libro)
 );
 
--- Tabla de relación usuario-ejemplar (préstamos)
 DROP TABLE IF EXISTS prestamo;
 CREATE TABLE prestamo (
     id_prestamo INT AUTO_INCREMENT PRIMARY KEY,
